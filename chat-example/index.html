@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Socket.IO Hello World</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>
+    <script>
+        // Connect to the Socket.IO server
+        const socket = io('ws://localhost:3001');  
+        // Handle the 'response' event
+        socket.on('response', (data) => {
+          
+          console.log('Client Received response event:', data);
+        });   
+        // Send a 'hello' event
+        socket.emit('hello', 'Hello, server!');
+    </script>
+</head>
+
+<body>
+    <h1>Socket.IO Hello World</h1>
+</body>
+</html>

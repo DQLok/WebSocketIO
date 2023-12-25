@@ -9,7 +9,7 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  IO.Socket socket = IO.io("http://localhost:3000", <String, dynamic>{
+  IO.Socket socket = IO.io("http://localhost:3001", <String, dynamic>{
     "transports": ["websocket"],
     "autoConnect": false
   });
@@ -23,7 +23,7 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   void connectToServer() {
-    socket = IO.io("http://localhost:3000", <String, dynamic>{
+    socket = IO.io("http://localhost:3001", <String, dynamic>{
       "transports": ["websocket"],
       "autoConnect": false,
     });
