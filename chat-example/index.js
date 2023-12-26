@@ -38,6 +38,33 @@ io.on('connection', (socket) => {
         // Emit a response event
         socket.emit('response', 'Hello, client!');
     });
+
+    socket.on('chat_message', (msg) => {
+        console.log('message: ' , msg);
+        if (msg['jwt'] == jwt) {
+            socket.emit('chat_message', msg);
+        } else {
+            console.log('message: ' , 'Send Msg Fail');
+        }
+    });
+
+    const jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiU29ja2V0IEZsdXR0ZXIifQ.fPsjjKmkppWHNlnWbECNA77-SaBXQpNqvh71hw78Cp0";
+    
+    socket.on('login_jwt', (msg) => {
+        socket.emit('login_jwt', jwt);
+    });
+
+    socket.on('msg_auto', (msg) => {
+        if (msg == jwt){
+        var number =0;
+        setInterval(function() {
+            number +=1;
+            socket.emit('msg_auto', number);
+        }, 5000);  
+        } else {
+            socket.emit('msg_auto', "Wrong JWT");
+        }   
+    });
 });
 
 // function to listen on port
